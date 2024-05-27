@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "cc-v2"
+version = "0.1.0"
+description = ""
+authors = ["Serg <https://github.com/CodeCraftSerg>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+black = "^24.4.2"
+django = "^5.0.6"
+psycopg2-binary = "^2.9.9"
+django-environ = "^0.11.2"
+gunicorn = "^22.0.0"
+whitenoise = "^6.6.0"
+requests = "^2.32.2"
+django-session-timeout = "^0.1.0"
+six = "^1.16.0"
+pip = "^24.0"
+beautifulsoup4 = "^4.12.3"
+cloudinary = "^1.40.0"
+django-cloudinary-storage = "^0.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
