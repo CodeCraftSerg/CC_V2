@@ -6,14 +6,11 @@
 CloudyContacts is a web application built with the Django framework that provides users with tools to manage contacts and notes, upload files to cloud storage, and receive news summaries. The application includes authentication mechanisms to ensure the privacy and security of user data.
 
 ## Requirements
-API keys are required to run this application. Obtain the necessary keys at the addresses below:
-* Create an account on **[openweathermap.org](https://openweathermap.org)**, then go to **[openweathermap.org/api_keys](https://home.openweathermap.org/api_keys)** and create an API key for access.
-* Create an account on **[abstractapi.com](https://www.abstractapi.com)**. Then, go to **[abstractapi.com/api](https://app.abstractapi.com/api/ip-geolocation/tester)** and create an API key for access.
-* Create an account on **[cloudinary.com](https://cloudinary.com)**. Then, go to settings page and generate your Access Keys.
+...
 
 ## Run Locally
 ```bash
-  git clone https://github.com/CodeCraftSerg/CloudyContacts
+  git clone https://github.com/CodeCraftSerg/CC_V2
 ```
 Install dependencies
 ```bash
@@ -64,10 +61,3 @@ Start the server
   python manage.py runserver
 ```
 By default, application will run on [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
-
-## Our Team:
-* Developer: [Iurii Popov](https://github.com/ShuguruiUA)
-* Developer: [Kris](https://github.com/Krisiris250592)
-* Developer: [Aryna Reutska](https://github.com/xrendezvous)
-* Scrum Master + Developer: [Olha](https://github.com/HelgaTsar)
-* Team Lead + Repository Owner + Developer: [Serg](https://github.com/CodeCraftSerg)
