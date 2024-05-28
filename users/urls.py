@@ -8,7 +8,7 @@ from django.contrib.auth.views import (
 )
 
 from . import views
-from .forms import LoginForm
+from .forms import LoginForm, UserPasswordResetForm, UserPasswordResetConfirm
 
 app_name = "users"
 
@@ -30,7 +30,9 @@ urlpatterns = [
     ),
     path(
         "reset-password/",
-        views.ResetPasswordView.as_view(),
+        views.ResetPasswordView.as_view(
+            template_name="users/password_reset.html", form_class=UserPasswordResetForm
+        ),
         name="password_reset",
     ),
     path(
@@ -42,6 +44,7 @@ urlpatterns = [
         "reset-password/confirm/<uidb64>/<token>/",
         PasswordResetConfirmView.as_view(
             template_name="users/password_reset_confirm.html",
+            form_class=UserPasswordResetConfirm,
             success_url="/users/reset-password/complete/",
         ),
         name="password_reset_confirm",
