@@ -102,11 +102,8 @@ class UserPasswordResetForm(PasswordResetForm):
 
 
 class UserPasswordResetConfirm(SetPasswordForm):
-    def __init__(self, *args, **kwargs):
-        super(UserPasswordResetConfirm, self).__init__(*args, **kwargs)
 
-    password1 = CharField(
-        required=True,
+    new_password1 = CharField(
         widget=PasswordInput(
             attrs={
                 "placeholder": "Password",
@@ -114,8 +111,7 @@ class UserPasswordResetConfirm(SetPasswordForm):
             }
         ),
     )
-    password2 = CharField(
-        required=True,
+    new_password2 = CharField(
         widget=PasswordInput(
             attrs={
                 "placeholder": "Confirm password",
@@ -123,7 +119,3 @@ class UserPasswordResetConfirm(SetPasswordForm):
             }
         ),
     )
-
-    class Meta:
-        model = User
-        fields = ("password1", "password2")

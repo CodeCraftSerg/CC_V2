@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib import messages
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, PasswordResetConfirmView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 
-from .forms import RegisterForm
+from .forms import RegisterForm, UserPasswordResetConfirm
 
 
 class RegisterView(View):
@@ -34,10 +34,16 @@ class RegisterView(View):
 
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = "users/password_reset.html"
+    success_url = reverse_lazy("users:password_reset_done")
     email_template_name = "users/password_reset_email.html"
     html_email_template_name = "users/password_reset_email.html"
-    success_url = reverse_lazy("users:password_reset_done")
     success_message = (
         "An email with instructions to reset your password has been sent to %(email)s."
     )
     subject_template_name = "users/password_reset_subject.txt"
+
+
+class UserPasswordResetConfirmView(SuccessMessageMixin, PasswordResetConfirmView):
+    template_name = "users/password_reset_confirm.html"
+    form_class = UserPasswordResetConfirm
+    success_message = "Your password has been reset. You can login now."
