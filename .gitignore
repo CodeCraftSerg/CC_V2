@@ -89,5 +89,6 @@ env.bak/
 venv.bak/
 
 # User personal files and folders
+creds/
 *.rar
 *.zip
