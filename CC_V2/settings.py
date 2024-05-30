@@ -128,31 +128,31 @@ WSGI_APPLICATION = "CC_V2.wsgi.application"
 # }
 
 # --- neon Database (PostgreSQL 16) ---
-# DATABASES = {
-#     "default": {
-#         "ENGINE": env("NEON_ENGINE"),
-#         "NAME": env("NEON_NAME"),
-#         "USER": env("NEON_USER"),
-#         "PASSWORD": env("NEON_PASSWORD"),
-#         "HOST": env("NEON_HOST"),
-#         "PORT": env("NEON_PORT"),
-#         "OPTIONS": {
-#             "sslmode": "require",
-#         },
-#     }
-# }
-
-# --- ElephantSQL Database ---
 DATABASES = {
     "default": {
-        "ENGINE": env("ELEPHANT_ENGINE"),
-        "NAME": env("ELEPHANT_DB_NAME_USER"),
-        "USER": env("ELEPHANT_DB_NAME_USER"),
-        "PASSWORD": env("ELEPHANT_PASSWORD"),
-        "HOST": env("ELEPHANT_HOST"),
-        "PORT": env("ELEPHANT_PORT"),
+        "ENGINE": env("NEON_ENGINE"),
+        "NAME": env("NEON_NAME"),
+        "USER": env("NEON_USER"),
+        "PASSWORD": env("NEON_PASSWORD"),
+        "HOST": env("NEON_HOST"),
+        "PORT": env("NEON_PORT"),
+        "OPTIONS": {
+            "sslmode": "require",
+        },
     }
 }
+
+# --- ElephantSQL Database ---
+# DATABASES = {
+#     "default": {
+#         "ENGINE": env("ELEPHANT_ENGINE"),
+#         "NAME": env("ELEPHANT_DB_NAME_USER"),
+#         "USER": env("ELEPHANT_DB_NAME_USER"),
+#         "PASSWORD": env("ELEPHANT_PASSWORD"),
+#         "HOST": env("ELEPHANT_HOST"),
+#         "PORT": env("ELEPHANT_PORT"),
+#     }
+# }
 
 
 # Password validation

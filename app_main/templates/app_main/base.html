@@ -280,14 +280,8 @@
                     <div class="hidden sm:flex">
                         <form method="post" action="{% url 'users:signout' %}">
                             {% csrf_token %}
-                            <!--<a
-                                    href="#" type="submit"
-                                    class="signUpBtn rounded-md bg-white bg-opacity-20 px-6 py-2 text-base font-medium text-white duration-300 ease-in-out hover:bg-opacity-100 hover:text-dark"
-                            >
-                                Sign Out
-                            </a>-->
                             <button type="submit"
-                                    class="inline-flex items-center justify-center px-10 py-3 text-base font-medium text-white transition duration-300 ease-in-out rounded-md bg-primary hover:bg-blue-dark">
+                                    class="loginBtn px-[22px] py-2 text-base font-medium text-white hover:opacity-70">
                                 Sign Out
                             </button>
                         </form>
