@@ -90,5 +90,6 @@ venv.bak/
 
 # User personal files and folders
 creds/
+source_data/
 *.rar
 *.zip
