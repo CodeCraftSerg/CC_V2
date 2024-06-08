@@ -88,6 +88,22 @@ def main(request):
     return render(request, "app_main/index.html", context)
 
 
+def custom_page_not_found_view(request, exception):
+    return render(request, "errors/404.html", context={})
+
+
+def custom_error_view(request, exception=None):
+    return render(request, "errors/500.html", context={})
+
+
+def custom_permission_denied_view(request, exception=None):
+    return render(request, "errors/403.html", context={})
+
+
+def custom_bad_request_view(request, exception=None):
+    return render(request, "errors/400.html", context={})
+
+
 def privacy_policy(request):
     return render(request, "app_main/privacy_policy.html", context={})
 

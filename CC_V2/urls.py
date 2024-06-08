@@ -31,3 +31,8 @@ urlpatterns = [
     path("app_files/", include("app_files.urls")),
     path("app_news/", include("app_news.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+handler404 = "app_main.views.custom_page_not_found_view"
+handler500 = "app_main.views.custom_error_view"
+handler403 = "app_main.views.custom_permission_denied_view"
+handler400 = "app_main.views.custom_bad_request_view"
