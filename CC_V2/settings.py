@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "allauth.socialaccount.providers.github",
     "allauth.socialaccount.providers.google",
 ]
 
@@ -201,7 +202,7 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 LOGIN_URL = "/users/signin"
 LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/users/signout/"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 
 MEDIA_ROOT = BASE_DIR / "media"
@@ -236,7 +237,7 @@ DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.RawMediaCloudinaryStorage"
 SITE_ID = 2
 
 ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
@@ -251,7 +252,13 @@ SOCIALACCOUNT_PROVIDERS = {
             "client_id": env("GOOGLE_CLIENT_ID"),
             "secret": env("GOOGLE_CLIENT_SECRET"),
         },
-    }
+    },
+    "github": {
+        "APP": {
+            "client_id": env("GITHUB_CLIENT_ID"),
+            "secret": env("GITHUB_CLIENT_SECRET"),
+        }
+    },
 }
 
 AUTHENTICATION_BACKENDS = [
