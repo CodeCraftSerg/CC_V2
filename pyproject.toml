@@ -20,6 +20,7 @@ pip = "^24.0"
 beautifulsoup4 = "^4.12.3"
 cloudinary = "^1.40.0"
 django-cloudinary-storage = "^0.3.0"
+django-allauth = {extras = ["socialaccount"], version = "^0.63.3"}
 
 
 [build-system]

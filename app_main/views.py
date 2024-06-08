@@ -88,9 +88,13 @@ def main(request):
     return render(request, "app_main/index.html", context)
 
 
-def about_team(request):
-    return render(request, "app_main/about_team.html", context={})
+def privacy_policy(request):
+    return render(request, "app_main/privacy_policy.html", context={})
 
 
-def about_application(request):
-    return render(request, "app_main/about_application.html", context={})
+def terms_of_use(request):
+    return render(request, "app_main/terms_of_use.html", context={})
+
+
+def delete_personal_data(request):
+    return render(request, "app_main/delete_personal_data.html", context={})
