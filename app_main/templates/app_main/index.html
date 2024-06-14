@@ -4,20 +4,12 @@
 {% load static %}
 
 <!-- ====== Hero Section Start -->
-<div
-        id="home"
-        class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]"
->
+<div id="home" class="relative overflow-hidden bg-primary pt-[120px] md:pt-[130px] lg:pt-[160px]">
     <div class="container">
         <div class="-mx-4 flex flex-wrap items-center">
             <div class="w-full px-4">
-                <div
-                        class="hero-content wow fadeInUp mx-auto max-w-[780px] text-center"
-                        data-wow-delay=".2s"
-                >
-                    <h1
-                            class="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]"
-                    >
+                <div class="hero-content wow fadeInUp mx-auto max-w-[780px] text-center" data-wow-delay=".2s">
+                    <h1 class="mb-6 text-3xl font-bold leading-snug text-white sm:text-4xl sm:leading-snug lg:text-5xl lg:leading-[1.2]">
                         CloudyContacts is a web application created using the Django framework
                     </h1>
                     <p
@@ -1364,7 +1356,7 @@
                         resources.
                     </p>
                     <a
-                            href="javascript:void(0)"
+                            href="{% url 'users:signup' %}"
                             class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary"
                     >
                         Learn More
@@ -1425,6 +1417,9 @@
                     <p class="mb-8 text-body-color dark:text-dark-6 lg:mb-9">
                         An authorized user can view the latest news, weather forecasts, currency rates, etc.
                     </p>
+                    <br>
+                    <br>
+                    <br>
                     <a
                             href="javascript:void(0)"
                             class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary"
@@ -1456,6 +1451,7 @@
                         Authorized users can upload their files to cloud storage and access them. The application allows
                         users to sort files by category (images, documents, videos, etc.).
                     </p>
+                    <br>
                     <a
                             href="javascript:void(0)"
                             class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary"
@@ -1470,10 +1466,7 @@
 <!-- ====== Features Section End -->
 
 <!-- ====== About Section Start -->
-<section
-        id="about"
-        class="bg-gray-1 pb-8 pt-20 dark:bg-dark-2 lg:pb-[70px] lg:pt-[120px]"
->
+<section id="about" class="bg-gray-1 pb-8 pt-20 dark:bg-dark-2 lg:pb-[70px] lg:pt-[120px]">
     <div class="container">
         <div class="wow fadeInUp" data-wow-delay=".2s">
             <div class="-mx-4 flex flex-wrap items-center">
@@ -1482,24 +1475,28 @@
                         <h2
                                 class="mb-5 text-3xl font-bold leading-tight text-dark dark:text-white sm:text-[40px] sm:leading-[1.2]"
                         >
-                            Brilliant Toolkit to Build Nextgen Website Faster.
+                            CloudyContacts is boldly stepping into the future.
                         </h2>
                         <p
                                 class="mb-10 text-base leading-relaxed text-body-color dark:text-dark-6"
                         >
-                            The main ‘thrust' is to focus on educating attendees on how to
-                            best protect highly vulnerable business applications with
-                            interactive panel discussions and roundtables led by subject
-                            matter experts.
+                            CloudyContacts is a constantly evolving web application. We are continually improving and
+                            adding new features to our website.
                             <br/>
                             <br/>
-                            The main ‘thrust' is to focus on educating attendees on how to
-                            best protect highly vulnerable business applications with
-                            interactive panel.
+                            All relevant updates are displayed in the <b>Our Recent News</b> block. In addition, we
+                            analyze interesting implemented features in detail in the
+                            <a
+                                    href="javascript:void(0)"
+                                    class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary"
+                            >
+                                Blog
+                            </a>
+                            section.
                         </p>
 
                         <a
-                                href="javascript:void(0)"
+                                href="#recent_news"
                                 class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark"
                         >
                             Know More
@@ -1532,21 +1529,17 @@
                                 />
                             </div>
 
-                            <div
-                                    class="relative z-10 mb-4 flex items-center justify-center overflow-hidden bg-primary px-6 py-12 sm:mb-8 sm:h-[160px] sm:p-5 lg:mb-4 xl:mb-8"
-                            >
+                            <div class="relative z-10 mb-4 flex items-center justify-center overflow-hidden bg-primary px-6 py-12 sm:mb-8 sm:h-[160px] sm:p-5 lg:mb-4 xl:mb-8">
                                 <div>
-                      <span class="block text-5xl font-extrabold text-white">
-                        09
-                      </span>
+                                    <span class="block text-5xl font-extrabold text-white">
+                                        We're
+                                    </span>
                                     <span class="block text-base font-semibold text-white">
-                        We have
-                      </span>
-                                    <span
-                                            class="block text-base font-medium text-white text-opacity-70"
-                                    >
-                        Years of experience
-                      </span>
+                                        just
+                                    </span>
+                                    <span class="block text-base font-medium text-white text-opacity-70">
+                                        getting started
+                                    </span>
                                 </div>
                                 <div>
                       <span class="absolute left-0 top-0 -z-10">
@@ -1669,22 +1662,18 @@
 <!-- ====== About Section End -->
 
 <!-- ====== Blog Section Start -->
-<section class="bg-white pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
+<section id="recent_news" class="bg-white pb-10 pt-20 dark:bg-dark lg:pb-20 lg:pt-[120px]">
     <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap justify-center">
             <div class="w-full px-4">
                 <div class="mx-auto mb-[60px] max-w-[485px] text-center">
-              <span class="mb-2 block text-lg font-semibold text-primary">
-                Our Blogs
-              </span>
                     <h2
                             class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]"
                     >
                         Our Recent News
                     </h2>
                     <p class="text-base text-body-color dark:text-dark-6">
-                        There are many variations of passages of Lorem Ipsum available
-                        but the majority have suffered alteration in some form.
+                        This block presents the latest updates to the features of our website.
                     </p>
                 </div>
             </div>
@@ -1695,8 +1684,8 @@
                     <div class="mb-8 overflow-hidden rounded-[5px]">
                         <a href="blog-details.html" class="block">
                             <img
-                                    src="{% static 'app_main/images/blog/blog-01.jpg' %}"
-                                    alt="image"
+                                    src="{% static 'app_main/images/recent_news/recent_01.jpg' %}"
+                                    alt="authentication"
                                     class="w-full transition group-hover:rotate-6 group-hover:scale-125"
                             />
                         </a>
@@ -1705,21 +1694,20 @@
                 <span
                         class="mb-6 inline-block rounded-[5px] bg-primary px-4 py-0.5 text-center text-xs font-medium leading-loose text-white"
                 >
-                  Dec 22, 2023
+                  June 08, 2024
                 </span>
                         <h3>
                             <a
-                                    href="javascript:void(0)"
+                                    href="{% url 'users:signup' %}"
                                     class="mb-4 inline-block text-xl font-semibold text-dark hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
                             >
-                                Meet AutoManage, the best AI management tools
+                                We've added an authorization feature to the website
                             </a>
                         </h3>
                         <p
                                 class="max-w-[370px] text-base text-body-color dark:text-dark-6"
                         >
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
+                            You can register using your email or authenticate via Google and GitHub.
                         </p>
                     </div>
                 </div>
@@ -1729,8 +1717,8 @@
                     <div class="mb-8 overflow-hidden rounded-[5px]">
                         <a href="blog-details.html" class="block">
                             <img
-                                    src="{% static 'app_main/images/blog/blog-02.jpg' %}"
-                                    alt="image"
+                                    src="{% static 'app_main/images/recent_news/recent_02.jpg' %}"
+                                    alt="contacts"
                                     class="w-full transition group-hover:rotate-6 group-hover:scale-125"
                             />
                         </a>
@@ -1739,21 +1727,20 @@
                 <span
                         class="mb-6 inline-block rounded-[5px] bg-primary px-4 py-0.5 text-center text-xs font-medium leading-loose text-white"
                 >
-                  Mar 15, 2023
+                  June 29, 2024
                 </span>
                         <h3>
                             <a
                                     href="javascript:void(0)"
                                     class="mb-4 inline-block text-xl font-semibold text-dark hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
                             >
-                                How to earn more money as a wellness coach
+                                The Contacts functionality has been implemented
                             </a>
                         </h3>
                         <p
                                 class="max-w-[370px] text-base text-body-color dark:text-dark-6"
                         >
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
+                            Registered users can save their contacts' data.
                         </p>
                     </div>
                 </div>
@@ -1763,8 +1750,8 @@
                     <div class="mb-8 overflow-hidden rounded-[5px]">
                         <a href="blog-details.html" class="block">
                             <img
-                                    src="{% static 'app_main/images/blog/blog-03.jpg' %}"
-                                    alt="image"
+                                    src="{% static 'app_main/images/recent_news/recent_03.jpg' %}"
+                                    alt="news"
                                     class="w-full transition group-hover:rotate-6 group-hover:scale-125"
                             />
                         </a>
@@ -1773,21 +1760,20 @@
                 <span
                         class="mb-6 inline-block rounded-[5px] bg-primary px-4 py-0.5 text-center text-xs font-medium leading-loose text-white"
                 >
-                  Jan 05, 2023
+                  July 15, 2024
                 </span>
                         <h3>
                             <a
                                     href="javascript:void(0)"
                                     class="mb-4 inline-block text-xl font-semibold text-dark hover:text-primary dark:text-white dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl"
                             >
-                                The no-fuss guide to upselling and cross selling
+                                The news section has been launched
                             </a>
                         </h3>
                         <p
                                 class="max-w-[370px] text-base text-body-color dark:text-dark-6"
                         >
-                            Lorem Ipsum is simply dummy text of the printing and
-                            typesetting industry.
+                            Now, registered users can view the latest news, weather forecasts, currency rates, etc.
                         </p>
                     </div>
                 </div>
@@ -1818,7 +1804,7 @@
                         <h2
                                 class="max-w-[260px] text-[35px] font-semibold leading-[1.14] text-dark dark:text-white"
                         >
-                            Let's talk about your problem.
+                            Let's start working together.
                         </h2>
                     </div>
                     <div class="mb-12 flex flex-wrap justify-between lg:mb-0">
@@ -1845,11 +1831,11 @@
                                     Our Location
                                 </h5>
                                 <p class="text-base text-body-color dark:text-dark-6">
-                                    401 Broadway, 24th Floor, Orchard Cloud View, London
+                                    02000, Independence Square, Maidan Nezalezhnosti, Kyiv
                                 </p>
                             </div>
                         </div>
-                        <div class="mb-8 flex w-[330px] max-w-full">
+                        <!--<div class="mb-8 flex w-[330px] max-w-full">
                             <div class="mr-6 text-[32px] text-primary">
                                 <svg
                                         width="34"
@@ -1875,7 +1861,7 @@
                                     contact@yourdomain.com
                                 </p>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>
