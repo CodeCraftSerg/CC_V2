@@ -1,8 +1,15 @@
-import requests
 import environ
+import logging
 
-from django.shortcuts import render
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render, redirect
 from django.templatetags.static import static
+from django.template.loader import render_to_string
+
+from .forms import ContactUsForm
+
+logger = logging.getLogger(__name__)
 
 env = environ.Env(
     # set casting, default value
@@ -13,7 +20,51 @@ env = environ.Env(
 def main(request):
     logo_logo = static("app_main/images/logo/logo.svg")
     logo_white = static("app_main/images/logo/logo-white.svg")
-    context = {"logo_logo": logo_logo, "logo_white": logo_white}
+
+    if request.method == "POST":
+        logger.debug("Received POST request")
+        form = ContactUsForm(request.POST)
+        if form.is_valid():
+            logger.debug("Form is valid")
+            full_name = form.cleaned_data.get("full_name")
+            email = form.cleaned_data.get("email")
+            phone = form.cleaned_data.get("phone")
+            message = form.cleaned_data.get("message")
+
+            html_letter = render_to_string(
+                "app_main/contact_us_letter.html",
+                {
+                    "name": full_name,
+                    "email": email,
+                    "phone": phone,
+                    "message": message,
+                },
+            )
+
+            logger.debug(
+                f"Sending mail to: {env('RECIPIENT_1')} and {env('RECIPIENT_2')}, from: {settings.EMAIL_HOST_USER}"
+            )
+
+            send_mail(
+                subject="Received contact form submission",
+                message="This is message",
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[env("RECIPIENT_1"), env("RECIPIENT_2")],
+                html_message=html_letter,
+            )
+            return render(request, "app_main/success.html")
+        else:
+            logger.debug("Form is not valid")
+            logger.debug(form.errors)
+    else:
+        logger.debug("Received GET request")
+        form = ContactUsForm()
+
+    context = {
+        "logo_logo": logo_logo,
+        "logo_white": logo_white,
+        "form": form,
+    }
     return render(request, "app_main/index.html", context)
 
 

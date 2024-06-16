@@ -1876,19 +1876,16 @@
                     >
                         Send us a Message
                     </h3>
-                    <form>
+                    <form action="" method="post">
+                        {% csrf_token %}
                         <div class="mb-[22px]">
                             <label
                                     for="fullName"
                                     class="mb-4 block text-sm text-body-color dark:text-dark-6"
                             >Full Name*</label
                             >
-                            <input
-                                    type="text"
-                                    name="fullName"
-                                    placeholder="Adam Gelius"
-                                    class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6"
-                            />
+                            {{ form.full_name }}
+                            <span>{{ form.errors.full_name }}</span>
                         </div>
                         <div class="mb-[22px]">
                             <label
@@ -1896,12 +1893,8 @@
                                     class="mb-4 block text-sm text-body-color dark:text-dark-6"
                             >Email*</label
                             >
-                            <input
-                                    type="email"
-                                    name="email"
-                                    placeholder="example@yourmail.com"
-                                    class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6"
-                            />
+                            {{ form.email }}
+                            <span>{{ form.errors.email }}</span>
                         </div>
                         <div class="mb-[22px]">
                             <label
@@ -1909,12 +1902,8 @@
                                     class="mb-4 block text-sm text-body-color dark:text-dark-6"
                             >Phone*</label
                             >
-                            <input
-                                    type="text"
-                                    name="phone"
-                                    placeholder="+885 1254 5211 552"
-                                    class="w-full border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6"
-                            />
+                            {{ form.phone }}
+                            <span>{{ form.errors.phone }}</span>
                         </div>
                         <div class="mb-[30px]">
                             <label
@@ -1922,12 +1911,8 @@
                                     class="mb-4 block text-sm text-body-color dark:text-dark-6"
                             >Message*</label
                             >
-                            <textarea
-                                    name="message"
-                                    rows="1"
-                                    placeholder="type your message here"
-                                    class="w-full resize-none border-0 border-b border-[#f1f1f1] bg-transparent pb-3 text-body-color placeholder:text-body-color/60 focus:border-primary focus:outline-none dark:border-dark-3 dark:text-dark-6"
-                            ></textarea>
+                            {{ form.message }}
+                            <span>{{ form.errors.message }}</span>
                         </div>
                         <div class="mb-0">
                             <button

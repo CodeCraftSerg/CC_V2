@@ -6,6 +6,7 @@ app_name = "app_main"
 
 urlpatterns = [
     path("", views.main, name="root"),  # app_main:root
+    path("app_main/success/", views.main, name="success"),
     path("app_main/privacy_policy/", views.privacy_policy, name="privacy_policy"),
     path("app_main/terms_of_use/", views.terms_of_use, name="terms_of_use"),
     path(
