@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{% static 'app_main/css/swiper-bundle.min.css' %}"/>
     <link rel="stylesheet" href="{% static 'app_main/css/animate.css' %}"/>
     <link rel="stylesheet" href="{% static 'app_main/css/tailwind.css' %}"/>
+    <link rel="stylesheet" href="{% static 'app_contacts/css/contact.css' %}"/>
 
     <!-- ==== JS for the paths ==== -->
     <script language="javascript">
@@ -137,7 +138,7 @@
                                 </a>
                                 <div class="submenu relative left-0 top-full hidden w-[250px] rounded-sm bg-white p-4 transition-[top] duration-300 group-hover:opacity-100 dark:bg-dark-2 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full">
                                     <a
-                                            href="#contacts"
+                                            href="{% url 'app_contacts:contacts' %}"
                                             class="block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary"
                                     >
                                         Contacts
@@ -600,7 +601,7 @@
                     <ul>
                         <li>
                             <a
-                                    href="javascript:void(0)"
+                                    href="{% url 'app_contacts:contacts' %}"
                                     class="mb-3 inline-block text-base text-gray-7 hover:text-primary"
                             >
                                 Contacts

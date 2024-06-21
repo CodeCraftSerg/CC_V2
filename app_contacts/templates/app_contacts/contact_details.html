@@ -1,126 +1,335 @@
 {% extends 'app_main/base.html' %}
 
-{% block contacts %}
+{% block intro %}
 {% load static %}
 
-<section id="five" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Contact details:</h2>
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
+    </div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        Contact Details
+                    </h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        In this section, you can view details of your contact and choose the option to update it.
+                    </p>
 
+                    <ul class="flex items-center justify-center gap-[10px]">
+                        <li>
+                            <a href="{% url 'app_contacts:contacts' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-dark dark:text-white">
+                                Contacts Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app_main:root' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-body-color">
+                                <span class="text-body-color dark:text-dark-6"> / </span>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ====== Banner Section End -->
+
+<!-- ====== Contact Details Section Start -->
+<section id="pricing" class="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <span class="mb-2 block text-lg font-semibold text-primary">
+                        Check information to your contact below.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+            {% if form.errors %}
+            <div class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white" role="alert">
+                Please correct the errors below.
+            </div>
+            {% endif %}
+        </div>
         {% if messages %}
-        <div class="messages">
+        <div class="text-center">
             {% for message in messages %}
-            <span {% if message.tags %} class="alert alert-{{ message.tags }}" {% endif %}>{{ message }}</span>
+            <span {% if message.tags %} class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white {{ message.tags }}" {% endif %}>
+                {{ message }}
+            </span>
             {% endfor %}
         </div>
         {% endif %}
-        <h3>
-            {% if contact.is_favorite %}
-            <div>
-                <img src="{% static 'app_main/images/favorite-ico.svg' %}" style="width: 20px; height: 20px;"/>
-                {{contact.name}} {{contact.surname}}
-            </div>
-            {% else %}
-            <div>
-                <img src="{% static 'app_main/images/favorite-blank-ico.svg' %}"
-                     style="width: 20px; height: 20px;"/> {{contact.name}} {{contact.surname}}
-            </div>
-            {% endif %}
-        </h3>
 
-        {% if contact.birthdate %}
-        <div>
-            <img src="{% static 'app_main/images/birthday-ico.svg' %}"
-                 style="width: 20px; height: 20px;"/> {{contact.birthdate}}
-        </div>
-        {% endif %}
-        {% if contact.email %}
-        <div>
-            <a href="mailto:{{contact.email}}" target="_blank">
-                <img src="{% static 'app_main/images/email-ico.svg' %}" style="width: 20px; height: 20px;"/> </a>
-            {{contact.email}}
-        </div>
-        {% endif %}
-        {% if contact.mobile_phone %}
-        <div>
-            <img src="{% static 'app_main/images/mobile-ico.svg' %}" style="width: 20px; height: 20px;"/> Mobile:
-            {{contact.mobile_phone}}
-        </div>
-        {% endif %}
-        {% if contact.work_phone %}
-        <div>
-            <img src="{% static 'app_main/images/phone-ico.svg' %}" style="width: 20px; height: 20px;"/> Work:
-            {{contact.work_phone}}
-        </div>
-        {% endif %}
-        {% if contact.home_phone %}
-        <div>
-            <img src="{% static 'app_main/images/phone-ico.svg' %}" style="width: 20px; height: 20px;"/> Home:
-            {{contact.home_phone}}
-        </div>
-        {% endif %}
-        <div>
-            {% if contact.facebook %}
-            <a href="{{contact.facebook}}" target="_blank"><img src="{% static 'app_main/images/facebook-ico.svg' %}"
-                                                                style="width: 20px; height: 20px;"/></a>
-            {% endif %}
-            {% if contact.instagram %}
-            <a href="{{contact.instagram}}" target="_blank"><img src="{% static 'app_main/images/instagram-ico.svg' %}"
-                                                                 style="width: 20px; height: 20px;"/></a>
-            {% endif %}
-            {% if contact.tiktok %}
-            <a href="{{contact.tiktok}}" target="_blank"><img
-                    src="{% static 'app_main/images/tiktok-ico.svg' %}"
-                    style="width: 20px; height: 20px;"/></a>
-            {% endif %}
-        </div>
-        <div>
-            {% if address.address or address.city or address.country %}
-            <a href="https://www.google.com/maps/search/
-            {% if address.country %}{{address.country}}+{% endif %}
-            {% if address.city %}{{address.city}}+{% endif %}
-            {% if address.address %} {{address.address}}{% endif %}/"
-               target="_blank">
-                <img src="{% static 'app_main/images/address-ico.svg' %}" style="width: 20px; height: 20px;"/></a>
-            {% endif %}
 
-            {% if address.address %}
-            {{address.address}}
-            {% endif %}
+        <div class="-mx-4 flex flex-wrap justify-center">
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        {{contact.name}} {{contact.surname}} contact details
+                    </span>
 
-            {% if address.city %}
-            {{address.city}}
-            {% endif %}
+                    <div class="mb-[50px]">
+                        <div class="flex flex-col gap-[14px]">
+                            <ul class="flex gap-[10px]">
+                                {% if contact.is_favorite %}
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/favorite_ico.svg' %}"
+                                            alt="favorite_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.name}} {{contact.surname}}
+                                    </p>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/favorite_blank_ico.svg' %}"
+                                            alt="favorite_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.name}} {{contact.surname}}
+                                    </p>
+                                </li>
+                                {% endif %}
+                            </ul>
 
-            {% if address.country %}
-            {{address.country}}
-            {% endif %}
-            <p></p>
-        </div>
+                            {% if contact.birthdate %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/birthday_ico.svg' %}"
+                                            alt="birthday_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.birthdate}}
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endif %}
 
-        <nav>
-            <div style="display: flex; align-items: center;">
-                <div clas="col-6 col-12-xsmall">
-                    {% csrf_token %}
-                    <a href="{% url 'app_contacts:contact_update' contact.id %}" class="button">
-                        Update
-                    </a>
+                            {% if contact.email %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/email_ico.svg' %}"
+                                            alt="email_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        <a href="mailto:{{contact.email}}" rel="noopener noreferrer nofollow" target="_blank">
+                                            {{contact.email}}
+                                        </a>
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endif %}
+
+                            {% if contact.mobile_phone %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/mobile_ico.svg' %}"
+                                            alt="mobile_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        Mobile:
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.mobile_phone}}
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endif %}
+
+                            {% if contact.work_phone %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/phone_ico.svg' %}"
+                                            alt="phone_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        Work:
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.work_phone}}
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endif %}
+
+                            {% if contact.home_phone %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <img
+                                            src="{% static 'app_contacts/images/phone_ico.svg' %}"
+                                            alt="phone_ico"
+                                            class="max-w-full"
+                                            width="24"
+                                            height="24"
+                                    />
+                                </li>
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        Home:
+                                    </p>
+                                </li>
+                                <li>
+                                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                                        {{contact.home_phone}}
+                                    </p>
+                                </li>
+                            </ul>
+                            {% endif %}
+
+                            <ul class="flex gap-[10px]">
+                                {% if contact.facebook %}
+                                <li>
+                                    <a href="{{contact.facebook}}" rel="noopener noreferrer nofollow" target="_blank">
+                                        <img
+                                                src="{% static 'app_contacts/images/facebook_ico.svg' %}"
+                                                alt="facebook_ico"
+                                                class="max-w-full"
+                                                width="24"
+                                                height="24"
+                                        />
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if contact.instagram %}
+                                <li>
+                                    <a href="{{contact.instagram}}" rel="noopener noreferrer nofollow" target="_blank">
+                                        <img
+                                                src="{% static 'app_contacts/images/instagram_ico.svg' %}"
+                                                alt="instagram_ico"
+                                                class="max-w-full"
+                                                width="24"
+                                                height="24"
+                                        />
+                                    </a>
+                                </li>
+                                {% endif %}
+                                {% if contact.tiktok %}
+                                <li>
+                                    <a href="{{contact.tiktok}}" rel="noopener noreferrer nofollow" target="_blank">
+                                        <img
+                                                src="{% static 'app_contacts/images/tiktok_ico.svg' %}"
+                                                alt="tiktok_ico"
+                                                class="max-w-full"
+                                                width="24"
+                                                height="24"
+                                        />
+                                    </a>
+                                </li>
+                                {% endif %}
+                            </ul>
+
+                            {% if address.address or address.city or address.country %}
+                            <ul class="flex gap-[10px]">
+                                <li>
+                                    <a href="https://www.google.com/maps/search/
+                                    {% if address.country %}{{address.country}}+{% endif %}
+                                    {% if address.city %}{{address.city}}+{% endif %}
+                                    {% if address.address %} {{address.address}}{% endif %}/"
+                                       rel="noopener noreferrer nofollow" target="_blank">
+                                        <img
+                                                src="{% static 'app_contacts/images/address_ico.svg' %}"
+                                                alt="address_ico"
+                                                class="max-w-full"
+                                                width="24"
+                                                height="24"
+                                        />
+                                    </a>
+                                </li>
+                                {% if address.address %}
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        {{address.address}}
+                                    </p>
+                                </li>
+                                {% endif %}
+                                {% if address.city %}
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        {{address.city}}
+                                    </p>
+                                </li>
+                                {% endif %}
+                                {% if address.country %}
+                                <li>
+                                    <p class="text-base text-body-color dark:text-dark-6">
+                                        {{address.country}}
+                                    </p>
+                                </li>
+                                {% endif %}
+                            </ul>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+
+
+
                 </div>
-                <div clas="col-6 col-12-xsmall" style="margin-right: 2%; margin-left: 2%">
-                    {% csrf_token %}
-                    <a href="{% url 'app_contacts:delete_contact' contact.id %}" class="button">
-                        Delete
-                    </a>
-                </div>
-                <div clas="col-6 col-12-xsmall">
-                    <a href="{% url 'app_contacts:contacts' %}" class="button">
-                        Back
-                    </a>
-                </div>
             </div>
-        </nav>
+        </div>
+
+        <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+            {% csrf_token %}
+            <button class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark">
+                <a href="{% url 'app_contacts:contact_update' contact.id %}">Update</a>
+            </button>
+            <button class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark">
+                <a href="{% url 'app_contacts:delete_contact' contact.id %}">Delete</a>
+            </button>
+        </div>
 
     </div>
 </section>
+<!-- ====== Contact Details Section End -->
 
 {% endblock %}

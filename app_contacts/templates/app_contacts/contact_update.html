@@ -1,132 +1,209 @@
 {% extends 'app_main/base.html' %}
 
-{% block contacts %}
+{% block intro %}
 {% load static %}
 
-
-<section id="five" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Update contact:</h2>
-        <h3>{{ contact.name }} {{ contact.surname }}</h3>
-
-        <div class="split style1">
-            <section>
-                {% if form.errors %}
-                <div class="alert alert-danger" role="alert">
-                    Please correct the errors below.
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
+    </div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        Update Contact
+                    </h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        Enter additional information or edit existing information about your contact.
+                    </p>
+                    <ul class="flex items-center justify-center gap-[10px]">
+                        <li>
+                            <a href="{% url 'app_contacts:contacts' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-dark dark:text-white">
+                                Contacts Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app_main:root' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-body-color">
+                                <span class="text-body-color dark:text-dark-6"> / </span>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
                 </div>
-                {% endif %}
-                {% if messages %}
-                <div class="messages">
-                    {% for message in messages %}
-                    <span {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-                <form method="post">
-                    {% csrf_token %}
-                    <span>Update Name and Surname:</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" name="name" value="{{ form.instance.name }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.name }}</ul>
-
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" name="surname" placeholder="surname"
-                                   value="{{ form.instance.surname }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.surname }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Email:</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" name="email" placeholder="name@email.com"
-                                   value="{{ form.instance.email }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.email }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Phone numbers:</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            mobile<input type="text" class="form-control" placeholder="+380(XX)XXX-XX-XX"
-                                         name="mobile_phone"
-                                         value="{{ form.instance.mobile_phone }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.mobile_phone }}</ul>
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            work<input type="text" class="form-control" placeholder="+380(XX)XXX-XX-XX"
-                                       name="work_phone"
-                                       value="{{ form.instance.work_phone }}">
-                            <span>{{ form.errors.work_phone }}</span>
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            home<input type="text" class="form-control" name="home_phone"
-                                       value="{{ form.instance.home_phone }}" placeholder="+38(XXX)XXX-XX-XX">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.home_phone }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Birthday:</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            {{ form.birthdate }}
-                            <ul style="color: red; font-size: 14pt">{{ form.error.birthdate }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Facebook link</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="https://facebook.com/"
-                                   name=facebook value="{{ form.instance.facebook }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.facebook }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Instagram link</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="https://instagram.com/"
-                                   name="instagram" value="{{ form.instance.instagram }}">
-                            <ul style="color: red; font-size: 14pt">{{ form.errors.instagram }}</ul>
-                        </div>
-                    </div>
-                    <span>Update Tiktok link</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="https://tiktok.com/" name="tiktok"
-                                   value="{{ form.instance.tiktok }}">
-                            <ul style="color: red; font-size: 14pt">{{form.errors.tiktok}}</ul>
-                        </div>
-                    </div>
-                    <span>Update address</span>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="Country" name="country"
-                                   value="{{ address.country }}">
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="City" name="city"
-                                   value="{{ address.city }}">
-                        </div>
-                        <div class="col-6 col-12-xsmall">
-                            <input type="text" class="form-control" placeholder="Address" name="address"
-                                   value="{{ address.address }}">
-                        </div>
-                    </div>
-                    <div class="row gtr-uniform">
-                        <div class="col-6 col-12-xsmall" style="margin-top: 1em">
-                            <input id="is_favorite" type="checkbox" name="is_favorite"
-                                   {% if form.instance.is_favorite %}checked{% endif %}>
-                            <label class="form-label" for="is_favorite">Favorite</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="button" style="margin-top: 1em">Update</button>
-                    <a href="{% url 'app_contacts:contact_update' contact.id %}" class="button">Reset</a>
-                    <a href="{% url 'app_contacts:contact_details' contact.id %}" class="button">Back</a>
-                </form>
-            </section>
+            </div>
         </div>
     </div>
+</div>
+<!-- ====== Banner Section End -->
+
+<!-- ====== Update Contact Section Start -->
+<section id="pricing" class="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <span class="mb-2 block text-lg font-semibold text-primary">
+                        {{ contact.name }} {{ contact.surname }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+            {% if form.errors %}
+            <div class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white" role="alert">
+                Please correct the errors below.
+            </div>
+            {% endif %}
+        </div>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <span {% if message.tags %} class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white {{ message.tags }}" {% endif %}>
+                {{ message }}
+            </span>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        General
+                    </span>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Name:</span>
+                        <div class="mb-[22px]">
+                            {{ form.name }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.name }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Surname:</span>
+                        <div class="mb-[22px]">
+                            {{ form.surname }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.surname }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Email:</span>
+                        <div class="mb-[22px]">
+                            {{ form.email }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.email }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Birthday:</span>
+                        <div class="mb-[22px]">
+                            <input type="text"
+                                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none"
+                                   placeholder="dd/mm/YYYY" name="birthdate"/>
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.birthdate }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Phones
+                    </span>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Mobile:</span>
+                        <div class="mb-[22px]">
+                            {{ form.mobile_phone }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.mobile_phone }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Work:</span>
+                        <div class="mb-[22px]">
+                            {{ form.work_phone }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.work_phone }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Home:</span>
+                        <div class="mb-[22px]">
+                            {{ form.home_phone }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.home_phone }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Socials
+                    </span>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Facebook:</span>
+                        <div class="mb-[22px]">
+                            {{ form.facebook }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.facebook }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Instagram:</span>
+                        <div class="mb-[22px]">
+                            {{ form.instagram }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.instagram }}</span>
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Tiktok:</span>
+                        <div class="mb-[22px]">
+                            {{ form.tiktok }}
+                            <span class="mb-[18px] text-base italic leading-[28px] text-dark dark:text-white">{{ form.errors.tiktok }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Address
+                    </span>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Country:</span>
+                        <div class="mb-[22px]">
+                            <input type="text"
+                                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none"
+                                   placeholder="Ukraine" name="country">
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update City:</span>
+                        <div class="mb-[22px]">
+                            <input type="text"
+                                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none"
+                                   placeholder="Kyiv" name="city">
+                        </div>
+                        <span class="text-base text-body-color dark:text-dark-6">Update Street & ap.:</span>
+                        <div class="mb-[22px]">
+                            <input type="text"
+                                   class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none"
+                                   placeholder="Maidan Nezalezhnosti" name="address">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                        <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                            Is this contact a favorite?
+                        </span>
+                        <input id="is_favorite" type="checkbox" name="is_favorite" class="" {% if form.instance.is_favorite %}checked{% endif %}>
+                        <label class="text-base text-body-color dark:text-dark-6" for="is_favorite">Check if Yes</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+                <input type="submit" value="Update"
+                       class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark"/>
+                <button type="reset"
+                        class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark">
+                    <a href="{% url 'app_contacts:add_contact' %}">Reset</a>
+                </button>
+            </div>
+        </form>
+
+    </div>
 </section>
+<!-- ====== Update Contact Section End -->
 
 {% endblock %}
