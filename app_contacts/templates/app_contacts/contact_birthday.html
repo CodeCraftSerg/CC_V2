@@ -3,90 +3,194 @@
 {% block intro %}
 {% load static %}
 
-{% if user.is_authenticated %}
-
-<section id="intro" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Birthdays list</h2>
-        <div>
-            Current date: {% now "l, d/m/Y" %}
-
-        </div>
-        <div>Current time: {% now "H:i" %}</div>
-        <form action="{% url 'app_contacts:contact_birthday' %}" method="GET">
-            <label for="period">Select Period:</label>
-            <select name="period" id="period" style="width: 70%">
-                <option value="today" {% if period == "today" %}selected{% endif %}>Today</option>
-                <option value="week" {% if period == "week" %}selected{% endif %}>This Week</option>
-                <option value="month" {% if period == "month" %}selected{% endif %}>This Month</option>
-            </select>
-            <button type="submit" style="margin-top: 20px">Show</button>
-        </form>
-        {% if period == 'today' or period == 'week' %}
-            {% if birthday_contacts %}
-            <div class="row">
-                <div class="col">
-                    <h2>{{ period|capfirst }} Birthdays</h2>
-                    <ul class="birthday-icon">
-                        {% for contact in birthday_contacts %}
-                            <li><a href="/app_contacts/contact_details/{{ contact.id }}/">
-                                {{ contact.name }} - {{ contact.birthdate|date:"M d" }}
-                            </a></li>
-                        {% endfor %}
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
+    </div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        Contacts' birthdays
+                    </h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        Select a period to find out which contacts have a birthday in the selected period.
+                    </p>
+                    <ul class="flex items-center justify-center gap-[10px]">
+                        <li>
+                            <a href="{% url 'app_contacts:contacts' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-dark dark:text-white">
+                                Contacts Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app_main:root' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-body-color">
+                                <span class="text-body-color dark:text-dark-6"> / </span>
+                                Home
+                            </a>
+                        </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ====== Banner Section End -->
+
+<!-- ====== Contacts' birthdays Section Start -->
+<section id="pricing" class="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <span class="mb-2 block text-lg font-semibold text-primary">
+                        Current date: {% now "l, d/m/Y" %}
+                    </span>
+                    <span class="mb-2 block text-lg font-semibold text-primary">
+                        Current time: {% now "H:i" %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <form action="{% url 'app_contacts:contact_birthday' %}" method="GET">
+            <div class="-mx-4 flex flex-wrap justify-center">
+                <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                    <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                        <label for="period" class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                            Select Period:
+                        </label>
+                        <select name="period" id="period" class="w-full px-5 py-3 text-base transition bg-transparent border rounded-md outline-none border-stroke dark:border-dark-3 text-body-color dark:text-dark-6 placeholder:text-dark-6 focus:border-primary dark:focus:border-primary focus-visible:shadow-none">
+                            <option value="today" {% if period == 'today' %}selected{% endif %}>Today</option>
+                            <option value="week" {% if period == 'week' %}selected{% endif %}>This Week</option>
+                            <option value="month" {% if period == 'month' %}selected{% endif %}>This Month</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+                <input type="submit" value="Show" class="inline-flex items-center justify-center rounded-md border border-primary bg-primary px-7 py-3 text-center text-base font-medium text-white hover:border-blue-dark hover:bg-blue-dark"/>
+            </div>
+        </form>
+
+        {% if period == 'today' or period == 'week' %}
+        {% if birthday_contacts %}
+        <div class="-mx-4 flex flex-wrap justify-center">
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        {{ period|capfirst }} Birthdays
+                    </span>
+
+                    <div class="flex flex-col gap-[14px]">
+                        {% for contact in birthday_contacts %}
+                            <a href="/app_contacts/contact_details/{{ contact.id }}/">
+                                <p class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
+                                    {{ contact.name }} {{ contact.surname }} - {{ contact.birthdate|date:"M d" }}
+                                </p>
+                            </a>
+                        {% endfor %}
+                    </div>
                     {% else %}
-                        <p>No birthdays found for this period: {{ period|capfirst }}.</p>
+                    <div class="text-center">
+                        <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                            No birthdays found for this period: {{ period|capfirst }}.
+                        </p>
+                    </div>
                     {% endif %}
                 </div>
             </div>
+        </div>
         {% endif %}
+
         {% if period == 'month' %}
         {% if passed_this_year or today_birthdays or upcoming_this_month %}
-        <div class="row">
-            <div class="col">
-                <h5>Passed Birthdays</h5>
-                {% if not passed_this_year %}<div style="font-size: 14pt">No birthdays to show.</div>{% endif %}
-                <ul class="birthday-icon-pass">
-                    {% for contact in passed_this_year %}
-                        <li><a href="/app_contacts/contact_details/{{ contact.id }}/">
-                            {{ contact.name }} - {{ contact.birthdate|date:"M d" }}
-                        </a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col">
-                <h5>Today's Birthdays</h5>
-                {% if not today_birthdays %}<div style="font-size: 14pt">No birthdays to show.</div>{% endif %}
-                <ul class="birthday-icon">
-                    {% for contact in today_birthdays %}
-                        <li><a href="/app_contacts/contact_details/{{ contact.id }}/">
-                            {{ contact.name }} - {{ contact.birthdate|date:"M d" }}
-                        </a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="col">
-                <h5>Upcoming Birthdays</h5>
-                {% if not upcoming_this_month %}<div style="font-size: 14pt">No birthdays to show.</div>{% endif %}
-                <ul class="birthday-icon">
-                    {% for contact in upcoming_this_month %}
-                        <li><a href="/app_contacts/contact_details/{{ contact.id }}/">
-                            {{ contact.name }} - {{ contact.birthdate|date:"M d" }}
-                        </a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <br>
+        <div class="-mx-4 flex flex-wrap justify-center">
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="relative z-10 mb-10 overflow-hidden rounded-xl bg-white px-8 py-10 shadow-pricing dark:bg-dark-2 sm:p-12 lg:px-6 lg:py-10 xl:p-14">
 
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Passed Birthdays
+                    </span>
+                    {% if not passed_this_year %}
+                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                        No birthdays to show.
+                    </p>
+                    {% endif %}
+                    <div class="flex flex-col gap-[14px]">
+                        {% for contact in passed_this_year %}
+                            <a href="/app_contacts/contact_details/{{ contact.id }}/">
+                                <p class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
+                                    {{ contact.name }} {{ contact.surname }} - {{ contact.birthdate|date:"M d" }}
+                                </p>
+                            </a>
+                        {% endfor %}
+                        <br>
+                    </div>
+
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Today's Birthdays
+                    </span>
+                    {% if not today_birthdays %}
+                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                        No birthdays to show.
+                    </p>
+                    {% endif %}
+                    <div class="flex flex-col gap-[14px]">
+                        {% for contact in today_birthdays %}
+                            <a href="/app_contacts/contact_details/{{ contact.id }}/">
+                                <p class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
+                                    {{ contact.name }} {{ contact.surname }} - {{ contact.birthdate|date:"M d" }}
+                                </p>
+                            </a>
+                        {% endfor %}
+                        <br>
+                    </div>
+
+                    <span class="mb-5 block text-xl font-medium text-dark dark:text-white">
+                        Upcoming Birthdays
+                    </span>
+                    {% if not upcoming_this_month %}
+                    <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                        No birthdays to show.
+                    </p>
+                    {% endif %}
+                    <div class="flex flex-col gap-[14px]">
+                        {% for contact in upcoming_this_month %}
+                            <a href="/app_contacts/contact_details/{{ contact.id }}/">
+                                <p class="mb-3 inline-block text-base text-gray-7 hover:text-primary">
+                                    {{ contact.name }} {{ contact.surname }} - {{ contact.birthdate|date:"M d" }}
+                                </p>
+                            </a>
+                        {% endfor %}
+                        <br>
+                    </div>
+
+                    <p class="absolute right-[-50px] top-[60px] inline-block -rotate-90 rounded-bl-md rounded-tl-md bg-primary px-5 py-2 text-base font-medium text-white">
+                        <a href="{% url 'app_contacts:calendar' %}">
+                            View as calendar
+                        </a>
+                    </p>
+
+                    {% else %}
+                    <div class="text-center">
+                        <p class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary">
+                            No birthdays found for this period: {{ period|capfirst }}.
+                        </p>
+                    </div>
+                    {% endif %}
+
+                </div>
+            </div>
         </div>
-        <div class="col-6">
-            <a href="{% url 'app_contacts:calendar' %}" class="button small">View as calendar</a>
-        </div>
-        {% else %}
-            <p>No birthdays found for this period: {{ period|capfirst}}.</p>
         {% endif %}
+
     </div>
 </section>
-{% endif %}
-{% endif %}
+<!-- ====== Contacts' birthdays Section End -->
+
 {% endblock %}

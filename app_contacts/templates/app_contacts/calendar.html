@@ -3,65 +3,135 @@
 {% block intro %}
 {% load static %}
 
-<section id="five" class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Calendar: {% now "M" %} </h2>
-        <table style="border-collapse:collapse;">
-        <thead>
-            <tr>
-                <th style="width:14.3%">Mon</th>
-                <th style="width:14.3%">Tue</th>
-                <th style="width:14.3%">Wed</th>
-                <th style="width:14.3%">Thur</th>
-                <th style="width:14.3%">Fri</th>
-                <th style="width:14.3%">Sat</th>
-                <th style="width:14.3%">Sun</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for week in calendar %}
-        <tr>
-            {% for day in week %}
-                {% if day != 0 %}
-                    <td>
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
+    </div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        Calendar view
+                    </h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        Graphical representation of birthdays for the current month.
+                    </p>
+                    <ul class="flex items-center justify-center gap-[10px]">
+                        <li>
+                            <a href="{% url 'app_contacts:contacts' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-dark dark:text-white">
+                                Contacts Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app_main:root' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-body-color">
+                                <span class="text-body-color dark:text-dark-6"> / </span>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ====== Banner Section End -->
+
+<!-- ====== Calendar View Section Start -->
+<section id="pricing"
+         class="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <span class="mb-2 block text-lg font-semibold text-primary">
+                        Calendar: {% now "M" %}
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+            <table style="border-collapse:collapse; width: 100%;">
+                <thead>
+                <tr class="table-row">
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Mon</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Tue</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Wed</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Thur</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Fri</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Sat</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white" width="14.29%">Sun</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for week in calendar %}
+                <tr class="mb-8 text-body-color dark:text-dark-6 lg:mb-9 table-row">
+                    {% for day in week %}
+                    {% if day != 0 %}
+                    <td class="table-cell {% if day == day_today %}today{% endif %}">
                         {% if day == day_today %}
-                            <span style="color:#AAA000; font-weight:bold">{{ day }} today</span>
+                        <span>{{ day }}</span>
                         {% elif day < day_today %}
-                            {{ day }}
+                        {{ day }}
                         {% else %}
-                            {{ day }}
+                        {{ day }}
                         {% endif %}
                         {% for contact in birthday_contacts %}
-                            {% if day == contact.birthdate.day %}
-                                {% if day >= day_today %}
-                                    <ul class="birthday-icon">
-                                {% else %}
-                                    <ul class="birthday-icon-pass">
-                                {% endif %}
-                                        <li><a href="/app_contacts/contact_details/{{ contact.id }}/">
-                                            {{ contact.name }}
-                                        </a></li>
-                                    </ul>
-                            {% endif %}
+                        {% if day == contact.birthdate.day %}
+                        {% if day >= day_today %}
+                        <ul>
+                            <li>
+                                <img
+                                        src="{% static 'app_contacts/images/birthday_ico_small.svg' %}"
+                                        alt="birthday_ico_small"
+                                        class="max-w-full"
+                                        width="14"
+                                        height="14"
+                                />
+                            </li>
+                            <li>
+                                <a class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary" href="/app_contacts/contact_details/{{ contact.id }}/">
+                                    {{ contact.name }}
+                                </a>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul>
+                            <li>
+                                <img
+                                        src="{% static 'app_contacts/images/birthday_ico_pass_small.svg' %}"
+                                        alt="birthday_ico_pass_small"
+                                        class="max-w-full"
+                                        width="14"
+                                        height="14"
+                                />
+                            </li>
+                            <li>
+                                <a class="text-base font-medium text-dark hover:text-primary dark:text-white dark:hover:text-primary" href="/app_contacts/contact_details/{{ contact.id }}/">
+                                    {{ contact.name }}
+                                </a>
+                            </li>
+                        </ul>
+                        {% endif %}
+                        {% endif %}
                         {% endfor %}
                     </td>
-                {% else %}
-                    <td></td>
-                {% endif %}
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </tbody>
+                    {% else %}
+                    <td class="table-cell"></td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
 
-    </table>
-
-        <button class="button small" onclick="goBack()">return</button>
 
     </div>
 </section>
-<script>
-function goBack() {
-  window.history.back();
-}
-</script>
+<!-- ====== Calendar View Section End -->
+
 {% endblock %}
