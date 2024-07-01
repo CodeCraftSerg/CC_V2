@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     "app_main",
     "users",
     "app_contacts",
-    "app_notes",
     "app_files",
     "app_news",
     "allauth",

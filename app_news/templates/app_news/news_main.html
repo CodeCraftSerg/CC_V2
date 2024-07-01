@@ -1,0 +1,151 @@
+{% extends 'app_main/base.html' %}
+
+{% block intro %}
+{% load static %}
+
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0">
+    </div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        NEWS</h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        In this section, you can read the latest news. Just select the topic you are interested in.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ====== Banner Section End -->
+
+<!-- ====== NEWS Section Start -->
+<section class="pt-20 pb-10 lg:pt-[120px] lg:pb-20 dark:bg-dark">
+    <div class="container">
+        <div class="flex flex-wrap -mx-4">
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:tech_news' %}" class="block">
+                            <img src="{% static 'app_news/images/tech_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:tech_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Technology News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:science_news' %}" class="block">
+                            <img src="{% static 'app_news/images/science_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:science_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Science News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:business_news' %}" class="block">
+                            <img src="{% static 'app_news/images/business_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:business_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Business News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:health_news' %}" class="block">
+                            <img src="{% static 'app_news/images/health_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:health_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Health News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:sports_news' %}" class="block">
+                            <img src="{% static 'app_news/images/sports_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:sports_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Sports News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full px-4 md:w-1/2 lg:w-1/3">
+                <div class="mb-10 wow fadeInUp group" data-wow-delay=".1s">
+                    <div class="mb-8 overflow-hidden rounded-[5px]">
+                        <a href="{% url 'app_news:entertainment_news' %}" class="block">
+                            <img src="{% static 'app_news/images/entertainment_01.jpg' %}" alt="image"
+                                 class="w-full transition group-hover:rotate-6 group-hover:scale-125"/>
+                        </a>
+                    </div>
+                    <div>
+                        <h3>
+                            <a href="{% url 'app_news:entertainment_news' %}"
+                               class="inline-block mb-4 text-xl font-semibold text-dark dark:text-white hover:text-primary dark:hover:text-primary sm:text-2xl lg:text-xl xl:text-2xl">
+                                Entertainment News
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- ====== NEWS Section End -->
+
+{% endblock %}
