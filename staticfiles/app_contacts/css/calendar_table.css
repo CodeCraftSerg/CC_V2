@@ -1,0 +1,59 @@
+/* Ensure birthday icons do not overflow the cell */
+td {
+    position: relative;
+    word-wrap: break-word;
+    overflow: hidden;
+    vertical-align: top;
+    height: 100px; /* Set a fixed height for all cells */
+    width: 14.29%; /* Ensure all cells have equal width */
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+/* Highlight today's date */
+td.today {
+    background-color: #397CEF; /* Light green background */
+    border: 4px solid #071450; /* Orange border */
+    border-radius: 5px;
+}
+
+/* Highlight cell on hover */
+td:hover {
+    background-color: #e0e0e0; /* Light grey background on hover */
+}
+
+/* Add birthday icon styles */
+.birthday-icon, .birthday-icon-pass {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Ensure the items stack vertically */
+}
+
+.birthday-icon li, .birthday-icon-pass li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.birthday-icon li a, .birthday-icon-pass li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.table-container {
+    display: table;
+    width: 100%;
+}
+
+.table-row {
+    display: table-row;
+}
+
+.table-cell {
+    display: table-cell;
+    vertical-align: top;
+}
