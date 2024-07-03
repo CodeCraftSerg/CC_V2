@@ -1,10 +1,10 @@
 import os
 
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from CC_V2 import settings
 from .forms import UploadFileForm
 from .models import UserFile
-from django.contrib.auth.decorators import login_required
 
 
 def search_files_by_type(request, file_type: str):
@@ -85,8 +85,8 @@ def images(request):
     Returns:
     HttpResponse: The image files page with the list of image files.
     """
-    type = "image"
-    image_list = search_files_by_type(request, type)
+    file_type = "image"
+    image_list = search_files_by_type(request, file_type)
     print(image_list)
     return render(
         request,
@@ -110,8 +110,8 @@ def videos(request):
     Returns:
     HttpResponse: The video files page with the list of video files.
     """
-    type = "video"
-    video_list = search_files_by_type(request, type)
+    file_type = "video"
+    video_list = search_files_by_type(request, file_type)
     return render(
         request,
         "app_files/video_files.html",
@@ -134,8 +134,8 @@ def audios(request):
     Returns:
     HttpResponse: The audio files page with the list of audio files.
     """
-    type = "audio"
-    audio_list = search_files_by_type(request, type)
+    file_type = "audio"
+    audio_list = search_files_by_type(request, file_type)
     return render(
         request,
         "app_files/audio_files.html",
@@ -158,8 +158,8 @@ def docs(request):
     Returns:
     HttpResponse: The document files page with the list of document files.
     """
-    type = "document"
-    document_list = search_files_by_type(request, type)
+    file_type = "document"
+    document_list = search_files_by_type(request, file_type)
     return render(
         request,
         "app_files/docs_files.html",
@@ -182,8 +182,8 @@ def archives(request):
     Returns:
     HttpResponse: The archives page with the list of archive files.
     """
-    type = "archive"
-    archive_list = search_files_by_type(request, type)
+    file_type = "archive"
+    archive_list = search_files_by_type(request, file_type)
     return render(
         request,
         "app_files/archives.html",
@@ -206,8 +206,8 @@ def other(request):
     Returns:
     HttpResponse: The other files page with the list of other files.
     """
-    type = "other"
-    other_list = search_files_by_type(request, type)
+    file_type = "other"
+    other_list = search_files_by_type(request, file_type)
     return render(
         request,
         "app_files/other_files.html",

@@ -1,8 +1,9 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import User
 from pathlib import Path
 from datetime import datetime
-import os
 
 
 CYRILLIC_SYMBOLS = "абвгдеёжзийклмнопрстуфхцчшщъыьэюяєіїґ"

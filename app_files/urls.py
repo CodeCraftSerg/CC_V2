@@ -1,7 +1,6 @@
-from django.urls import path, include
+from django.urls import path
+
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
 
 app_name = "app_files"
 
@@ -14,7 +13,8 @@ urlpatterns = [
     path("document/", views.docs, name="docs_files"),
     path("archive/", views.archives, name="archives"),
     path("other/", views.other, name="other_files"),
-
-    path("delete-file/<int:f_id>", views.delete_file, name='delete_file'),
-    path("edit-description/<int:f_id>", views.edit_description, name='edit_description'),
+    path("delete-file/<int:f_id>", views.delete_file, name="delete_file"),
+    path(
+        "edit-description/<int:f_id>", views.edit_description, name="edit_description"
+    ),
 ]

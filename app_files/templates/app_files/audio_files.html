@@ -1,52 +1,87 @@
 {% extends 'app_main/base.html' %}
 
-{% block files_page %}
+{% block intro %}
 {% load static %}
 
-<section class="wrapper style1 fade-up">
-    <div class="inner">
-        <h2>Your audios</h2>
-        <em>Powered by</em>
-        <img src="{% static 'app_files/cloudinary.svg' %}" style="width: 20px; height: 20px;"/>
+<!-- ====== Banner Section Start -->
+<div class="relative z-10 overflow-hidden pt-[120px] pb-[60px] md:pt-[130px] lg:pt-[160px] dark:bg-dark">
+    <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-stroke/0 via-stroke dark:via-dark-3 to-stroke/0"></div>
+    <div class="container">
+        <div class="flex flex-wrap items-center -mx-4">
+            <div class="w-full px-4">
+                <div class="text-center">
+                    <h1 class="mb-4 text-3xl font-bold text-dark dark:text-white sm:text-4xl md:text-[40px] md:leading-[1.2]">
+                        Your audios
+                    </h1>
+                    <p class="mb-5 text-base text-body-color dark:text-dark-6">
+                        This section shows your audios.
+                    </p>
 
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="{% url 'app_files:upload_files' %}" class="button" style="margin-left: 30px;">
-                <i class="fa-solid fa-file-arrow-up" style="margin-left: 8px;"></i>Upload Your File
-            </a>
+                    <ul class="flex items-center justify-center gap-[10px]">
+                        <li>
+                            <a href="{% url 'app_files:files_page' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-dark dark:text-white">
+                                Files Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'app_main:root' %}"
+                               class="flex items-center gap-[10px] text-base font-medium text-body-color">
+                                <span class="text-body-color dark:text-dark-6"> / </span>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
         </div>
-        <hr/>
+    </div>
+</div>
+<!-- ====== Banner Section End -->
 
-        <div class="table-wrapper" , style="margin-top: 40px">
-            <table class="alt">
+<!-- ====== Audio Files Section Start -->
+<section id="pricing" class="relative z-20 overflow-hidden bg-white pb-12 pt-20 dark:bg-dark lg:pb-[90px] lg:pt-[120px]">
+    <div class="container mx-auto">
+        <div class="-mx-4 flex flex-wrap">
+            <div class="w-full px-4">
+                <div class="mx-auto mb-[60px] max-w-[510px] text-center">
+                    <button class="w-full px-5 py-3 text-base text-white transition duration-300 ease-in-out border rounded-md cursor-pointer border-primary bg-primary hover:bg-blue-dark">
+                        <a href="{% url 'app_files:upload_files' %}">Upload your file</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="mx-auto mb-12 max-w-[485px] text-center lg:mb-[70px]">
+            <table style="border-collapse:collapse; width: 100%;">
                 <thead>
-                <tr>
-                    <th>Description</th>
-                    <th>Original Filename</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                <tr class="table-row">
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white">Description</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white">Original filename</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white">Edit</th>
+                    <th class="mb-3 text-xl font-bold text-dark dark:text-white">Delete</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for f in audio_list %}
+                {% for item in audio_list %}
                 <tr>
-                    <td>{{ f.file_description }}</td>
-                    <td style="vertical-align: middle; text-align: center;"><a href="{{ f.filepath.url }} " class="button">download</a></td>
-                    <td><a href="{% url 'app_files:edit_description' f.id %}" class="button">Edit</a></td>
-                    <td><a href="{% url 'app_files:delete_file' f.id %}" class="button">Delete</a></td>
+                    <td>{{ item.file_description }}</td>
+                    <td><a href="{{ item.filepath.url }}">Download</a></td>
+                    <td><a href="{% url 'app_files:edit_description' item.id %}">Edit</a></td>
+                    <td><a href="{% url 'app_files:delete_file' item.id %}">Delete</a></td>
                 </tr>
                 {% empty %}
                 <tr>
-                    <td colspan="4">No audio files available.</td>
+                    <td>No audios available.</td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
         </div>
-        <a href="{% url 'app_files:files_page' %}" class="button" style="margin-right: 30px;">
-            <i class="fa fa-angle-double-left" aria-hidden="true"></i> All Files
-        </a>
 
     </div>
 </section>
+<!-- ====== Audio Files Section End -->
 
 {% endblock %}
