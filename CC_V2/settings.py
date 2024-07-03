@@ -33,11 +33,13 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1,[::1]").split(
-    ","
-)
+ALLOWED_HOSTS = os.getenv(
+    "DJANGO_ALLOWED_HOSTS",
+    "localhost,127.0.0.1,[::1]",
+    "defensive-louisette-grey-1ebebfd5.koyeb.app",
+).split(",")
 
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = ["https://defensive-louisette-grey-1ebebfd5.koyeb.app/"]
 
 # Application definition
 
